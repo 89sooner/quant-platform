@@ -1,0 +1,27 @@
+# Node
+node_modules/
+.next/
+out/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+.mypy_cache/
+.pytest_cache/
+
+# Data / Artifacts
+reports/
+*.sqlite3
+
+# Docker
+*.log
+
+# VSCode
+.vscode/
+
+# Misc
+.DS_Store
