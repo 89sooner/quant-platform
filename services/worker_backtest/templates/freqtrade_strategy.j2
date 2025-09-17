@@ -1,0 +1,39 @@
+from freqtrade.strategy import IStrategy
+import pandas as pd
+import talib.abstract as ta
+
+
+class {{ class_name }}(IStrategy):
+    timeframe = '{{ timeframe }}'
+    can_short = {{ 'True' if can_short else 'False' }}
+    use_exit_signal = True
+    minimal_roi = {"0": 10}
+    stoploss = -0.99
+
+    def populate_indicators(self, df: pd.DataFrame, metadata: dict) -> pd.DataFrame:
+        {% for line in indicator_lines %}
+        {{ line }}
+        {% endfor %}
+        return df
+
+    def populate_entry_trend(self, df: pd.DataFrame, metadata: dict) -> pd.DataFrame:
+        {% if entry_long %}
+        df.loc[
+            {{ entry_long }}, 'enter_long'] = 1
+        {% endif %}
+        {% if can_short and entry_short %}
+        df.loc[
+            {{ entry_short }}, 'enter_short'] = 1
+        {% endif %}
+        return df
+
+    def populate_exit_trend(self, df: pd.DataFrame, metadata: dict) -> pd.DataFrame:
+        {% if exit_long %}
+        df.loc[
+            {{ exit_long }}, 'exit_long'] = 1
+        {% endif %}
+        {% if can_short and exit_short %}
+        df.loc[
+            {{ exit_short }}, 'exit_short'] = 1
+        {% endif %}
+        return df

@@ -1,0 +1,9 @@
+freqtrade
+redis
+rq
+jinja2
+pydantic
+pandas
+numpy
+ccxt
+python-dotenv

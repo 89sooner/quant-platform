@@ -1,0 +1,4 @@
+ccxt
+redis
+rq
+python-dotenv
